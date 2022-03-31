@@ -1,4 +1,5 @@
 import Card from '../components/shared/Card';
+import { Link } from 'react-router-dom';
 
 function AboutPage() {
   return (
@@ -11,7 +12,7 @@ function AboutPage() {
           nemo optio quisquam quae!
         </p>
         <p>
-          <a href="/">back to home</a>
+          <Link to="/">back to home</Link>
         </p>
       </div>
     </Card>
