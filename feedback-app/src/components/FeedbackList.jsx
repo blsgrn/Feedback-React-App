@@ -1,28 +1,20 @@
-import { motion, AnimatePresence } from 'framer-motion';
-import { useContext } from 'react';
-import FeedbackItem from './FeedbackItem';
-import FeedbackContext from '../context/FeedbackContext';
+import { motion, AnimatePresence } from "framer-motion";
+import { useContext } from "react";
+import FeedbackItem from "./FeedbackItem";
+import FeedbackContext from "../context/FeedbackContext";
+
+import React from "react";
 
 function FeedbackList() {
-  const { feedback } = useContext(FeedbackContext);
+  const { feedback, isLoading } = useContext(FeedbackContext);
 
-  if (!feedback || feedback.length === 0) {
+  if (!isLoading && (!feedback || feedback.length === 0)) {
     return <p> No feedback yet</p>;
   }
 
-  // return (
-  //   <div className="feedback-list">
-  //     {feedback.map((item) => (
-  //       <FeedbackItem
-  //         key={item.id}
-  //         item={item}
-  //         // handleDelete={(id) => console.log(id)}
-  //         handleDelete={handleDelete}
-  //       />
-  //     ))}
-  //   </div>
-  // );
-  return (
+  return isLoading ? (
+    <h3>Loading...</h3>
+  ) : (
     <div className="feedback-list">
       <AnimatePresence>
         {feedback.map((item) => (
@@ -41,3 +33,16 @@ function FeedbackList() {
 }
 
 export default FeedbackList;
+
+// return (
+//   <div className="feedback-list">
+//     {feedback.map((item) => (
+//       <FeedbackItem
+//         key={item.id}
+//         item={item}
+//         // handleDelete={(id) => console.log(id)}
+//         handleDelete={handleDelete}
+//       />
+//     ))}
+//   </div>
+// );
